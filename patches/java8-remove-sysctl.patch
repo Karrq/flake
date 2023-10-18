@@ -1,0 +1,10 @@
+diff --git a/jdk/src/solaris/native/java/net/PlainSocketImpl.c b/jdk/src/solaris/native/java/net/PlainSocketImpl.c
+--- a/jdk/src/solaris/native/java/net/PlainSocketImpl.c
++++ b/jdk/src/solaris/native/java/net/PlainSocketImpl.c
+@@ -46,1 +46,0 @@
+-#include <sys/sysctl.h>
+diff --git a/jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c b/jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c
+--- a/jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c
++++ b/jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c
+@@ -44,1 +44,0 @@
+-#include <sys/sysctl.h>
