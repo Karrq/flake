@@ -17,7 +17,10 @@ let
       ++ [ openssl ];
   });
 
-in nim2Packages.overrideScope (final: prev: {
-  nim = wrapped-nim2;
-  nimble = final.nimble.overrideAttrs add-openssl;
-})
+in {
+  nim2 = wrapped-nim2;
+  nim2Packages = nim2Packages.overrideScope (_: prev: {
+    nim = wrapped-nim2;
+    nimble = prev.nimble.overrideAttrs add-openssl;
+  });
+}
