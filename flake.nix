@@ -18,6 +18,7 @@
         let
           callPackage = pkgs.lib.callPackageWith (self'.packages);
           java8 = callPackage ./java8.nix;
+          nim2Packages = callPackage ./nim.nix;
           nixGLWrap = (p:
             pkgs.writeShellScriptBin p.name ''
               ${inputs'.nixgl.packages.default} ${p.out} "$@"
@@ -33,6 +34,7 @@
           packages.prismlauncher = nixGLWrap pkgs.prismlauncher;
 
           overlayAttrs = {
+            inherit nim2Packages;
             inherit (self'.packages) prismlauncher java8u232;
           };
         };
