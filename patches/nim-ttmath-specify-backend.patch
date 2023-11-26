@@ -1,0 +1,24 @@
+From a5e6fe9c9bd61c1440c0759ea544584a2b3e5858 Mon Sep 17 00:00:00 2001
+From: Francesco Dainese <franci.dainese@gmail.com>
+Date: Sun, 26 Nov 2023 19:53:35 +0800
+Subject: [PATCH] fix(pkg): specify cpp backend
+
+---
+ ttmath.nimble | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/ttmath.nimble b/ttmath.nimble
+index db16bca..9298b1b 100644
+--- a/ttmath.nimble
++++ b/ttmath.nimble
+@@ -3,6 +3,7 @@ version       = "0.5.0"
+ author        = "Status Research & Development GmbH"
+ description   = "A Nim wrapper for ttmath: big numbers with fixed size"
+ license       = "Apache License 2.0"
++backend       = "cpp"
+ 
+ ### Dependencies
+ requires "nim >= 1.6.12"
+-- 
+2.42.0
+

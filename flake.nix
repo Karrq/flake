@@ -16,10 +16,9 @@
       imports = [ inputs.flake-parts.flakeModules.easyOverlay ];
       perSystem = { self', inputs', pkgs, ... }:
         let
-          callPackage = pkgs.lib.callPackageWith (self'.packages);
-          java8 = callPackage ./java8.nix;
-          nim2-with-checksums = callPackage ./nim.nix { inherit pkgs; };
-          monaspace = callPackage ./monaspace.nix { inherit pkgs; };
+          java8 = pkgs.callPackage ./java8.nix;
+          nim2-with-checksums = pkgs.callPackage ./nim.nix { inherit pkgs; };
+          monaspace = pkgs.callPackage ./monaspace.nix { inherit pkgs; };
 
           nixGLWrap = (p:
             pkgs.writeShellScriptBin p.name ''
@@ -36,6 +35,8 @@
           packages.prismlauncher = nixGLWrap pkgs.prismlauncher;
 
           packages.nim2 = nim2-with-checksums.nim2;
+          packages.nimlangserver =
+            nim2-with-checksums.nim2Packages.nimlangserver;
 
           packages.monaspace = monaspace;
 
