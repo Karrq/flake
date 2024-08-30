@@ -1,0 +1,13 @@
+diff --git a/kiln.asd b/kiln.asd
+index 7614a19..549dc1a 100644
+--- a/kiln.asd
++++ b/kiln.asd
+@@ -11,7 +11,7 @@
+ (asdf:defsystem "kiln/build"
+   :description "Build the Kiln image"
+   :author "Paul M. Rodriguez <pmr@ruricolist.com>"
+-  :depends-on (:kiln/image)
++  :depends-on (:kiln/image :kiln/dispatch)
+   :class :package-inferred-system
+   :build-operation "program-op"
+   :build-pathname "kiln"

@@ -1,0 +1,60 @@
+diff --git a/scripts/rebuild.lisp b/scripts/rebuild.lisp
+index 4cdb936..a9413d0 100644
+--- a/scripts/rebuild.lisp
++++ b/scripts/rebuild.lisp
+@@ -12,31 +12,21 @@
+ 
+ (defun rebuild (&key
+                   (lisp :sbcl)
+-                  (quicklisp t)
+                   (target-system target-system)
+                   (target-file target-file))
+   (declare (keyword lisp)
+-           (boolean quicklisp)
+            (string target-system))
+   (let ((build0 (asdf:system-relative-pathname "kiln"
+                                                "bootstrap/build0.lisp"))
+         (build1 (asdf:system-relative-pathname "kiln"
+-                                               "bootstrap/build1.lisp"))
+-        (quicklisp-setup
+-          (when quicklisp
+-            (if (find-package :ql)
+-                (asdf:system-relative-pathname "quicklisp" "../setup.lisp")
+-                (error "Quicklisp requested but not available")))))
++                                               "bootstrap/build1.lisp")))
+     (flet ((load-arglist (file)
+              (list* "env"
+                     (fmt "KILN_TARGET_SYSTEM=~a" target-system)
+                     (fmt "KILN_TARGET_FILE=~a" target-file)
+                     (lisp-invocation-arglist
+                      :implementation-type lisp
+-                     :load
+-                     (if quicklisp-setup
+-                         (list quicklisp-setup file)
+-                         file)
++                     :load file
+                      :eval (quit-form :code 0 :implementation-type lisp))))
+            (run-arglist (arglist)
+              (when (dbg?)
+@@ -72,12 +62,6 @@
+     :initial-value (string-downcase (lisp-implementation-type))
+     :env-vars '("LISP")
+     :key :lisp)
+-   (clingon:make-option
+-    :boolean
+-    :description "Quicklisp?"
+-    :long-name "quicklisp"
+-    :initial-value :true
+-    :key :quicklisp)
+    (clingon:make-option
+     :string
+     :description "Target system"
+@@ -114,8 +98,6 @@
+              (find-keyword
+               (string-upcase
+                (clingon:getopt opts :lisp)))
+-             :quicklisp
+-             (clingon:getopt opts :quicklisp)
+              :target-system
+              (clingon:getopt opts :target-system)
+              :target-file

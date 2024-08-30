@@ -1,0 +1,12 @@
+diff --git a/kiln.asd b/kiln.asd
+index 4f07127..d608e0f 100644
+--- a/kiln.asd
++++ b/kiln.asd
+@@ -13,6 +13,6 @@
+   :author "Paul M. Rodriguez <pmr@ruricolist.com>"
+   :depends-on (:kiln/image)
+   :class :package-inferred-system
+-  :build-operation "asdf:program-op"
++  :build-operation :program-op
+   :build-pathname "kiln"
+   :entry-point "kiln/dispatch:invoke-entry-point")

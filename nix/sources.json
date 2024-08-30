@@ -1,0 +1,100 @@
+{
+    "cl-bobbin": {
+        "branch": "master",
+        "description": "Bobbin wraps strings.",
+        "homepage": null,
+        "owner": "sjl",
+        "repo": "bobbin",
+        "rev": "b454e8241b24ceab674eeeae464c8082b1b6d8ce",
+        "sha256": "02lw7w8cbvnxw5acbz405rb5lcqsf4fx7dvj5ldr0lhgbyv1mjnm",
+        "type": "tarball",
+        "url": "https://github.com/sjl/bobbin/archive/b454e8241b24ceab674eeeae464c8082b1b6d8ce.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "1.0.1"
+    },
+    "cl-clingon": {
+        "branch": "master",
+        "description": "Command-line options parser system for Common Lisp",
+        "homepage": "",
+        "owner": "dnaeon",
+        "repo": "clingon",
+        "rev": "f2a730f1073e41d78557019085fbb0c662fd3189",
+        "sha256": "0p8i9bkzzy4v0pg15dldrl73xri4kxyxa7si82bawh1dnnm53jgc",
+        "type": "tarball",
+        "url": "https://github.com/dnaeon/clingon/archive/f2a730f1073e41d78557019085fbb0c662fd3189.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.5.0"
+    },
+    "cl-cmd": {
+        "branch": "master",
+        "description": "Utility for running external programs",
+        "homepage": "",
+        "owner": "ruricolist",
+        "repo": "cmd",
+        "rev": "0164d574ba236e2001ee1d9dba3f4774c7512a8c",
+        "sha256": "03wbckzmz6pqdlz7pyar6nfg4vs4bl0b2np7n3kk3qhjbrdakc4m",
+        "type": "tarball",
+        "url": "https://github.com/ruricolist/cmd/archive/0164d574ba236e2001ee1d9dba3f4774c7512a8c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.0.1"
+    },
+    "cl-kiln": {
+        "branch": "master",
+        "description": "Infrastructure for scripting in Common Lisp",
+        "homepage": "",
+        "owner": "ruricolist",
+        "repo": "kiln",
+        "rev": "7f53fce7876869a58e9d822ed40b4e4e53802a9f",
+        "sha256": "0vs8hwyd1n3q7wj1vsh68qxi61wknyv40cxy3ckfaif5wgr8rcx4",
+        "type": "tarball",
+        "url": "https://github.com/ruricolist/kiln/archive/7f53fce7876869a58e9d822ed40b4e4e53802a9f.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.0.1"
+    },
+    "cl-lisp-invocation": {
+        "branch": "master",
+        "repo": "https://gitlab.common-lisp.net/qitab/lisp-invocation.git",
+        "rev": "ebf543ca17422dfbb51609f5b6d35a98c5f07449",
+        "type": "git",
+        "version": "1.0.14"
+    },
+    "cl-reexport": {
+        "branch": "master",
+        "description": "Reexport external symbols in other packages.",
+        "homepage": "",
+        "owner": "takagi",
+        "repo": "cl-reexport",
+        "rev": "03ad7a0e7307e510b3b25a622d3c5f8a077879b4",
+        "sha256": "02la6z3ickhmh2m87ymm2ijh9nkn7l6slskj99l8a1rhps394qqc",
+        "type": "tarball",
+        "url": "https://github.com/takagi/cl-reexport/archive/03ad7a0e7307e510b3b25a622d3c5f8a077879b4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.1"
+    },
+    "cl-shlex": {
+        "branch": "master",
+        "description": "Simple lexical analyzer for shell-like syntaxes",
+        "homepage": "",
+        "owner": "ruricolist",
+        "repo": "cl-shlex",
+        "rev": "3dee1cb7c0140fa7660ca7a3b2ac5e75d1218e5c",
+        "sha256": "16ag48sswgimr1fzr582vhym4s03idpd4lkydw5s58lv80ibpim8",
+        "type": "tarball",
+        "url": "https://github.com/ruricolist/cl-shlex/archive/3dee1cb7c0140fa7660ca7a3b2ac5e75d1218e5c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.0.1"
+    },
+    "cl-with-user-abort": {
+        "branch": "main",
+        "description": "provides a nice, portable way to capture user-interrupt signals in lisp",
+        "homepage": null,
+        "owner": "compufox",
+        "repo": "with-user-abort",
+        "rev": "a3db02eff122aa12c6e9c46eee5633fcb1022667",
+        "sha256": "0yidlm92dk8kvz137zlm2f0d198kmgqpdswkinr2x4snbgkhd98j",
+        "type": "tarball",
+        "url": "https://github.com/compufox/with-user-abort/archive/a3db02eff122aa12c6e9c46eee5633fcb1022667.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.1"
+    }
+}
