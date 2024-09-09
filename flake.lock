@@ -87,7 +87,23 @@
       "inputs": {
         "clnix": "clnix",
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "services-flake": "services-flake"
+      }
+    },
+    "services-flake": {
+      "locked": {
+        "lastModified": 1725150740,
+        "narHash": "sha256-vUEy+hr1gK4dl72WNy/Ss0AEDVmAqF4T1BKS0jmwCAw=",
+        "owner": "juspay",
+        "repo": "services-flake",
+        "rev": "113f8cbe962720d7d1d76d04700f3d441dada9f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "services-flake",
+        "type": "github"
       }
     },
     "systems": {

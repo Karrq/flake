@@ -9,11 +9,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "sourcehut:~remexre/clnix";
     };
+    services-flake.url = "github:juspay/services-flake";
   };
 
-  outputs = inputs @ {flake-parts, ...}:
+  outputs = inputs @ {
+    self,
+    flake-parts,
+    ...
+  }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+
+      flake.processComposeModules.default = import ./services {multiService = inputs.services-flake.lib.multiService;};
       flake.templates = {
         nestjs = {
           path = ./templates/nestjs;
