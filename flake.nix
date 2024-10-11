@@ -5,10 +5,20 @@
     nixpkgs.url = "github:/NixOS/nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    # Common Lisp
     clnix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "sourcehut:~remexre/clnix";
     };
+
+    # Rust
+    crane.url = "github:ipetkov/crane";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-analyzer-src.follows = "";
+    };
+
     services-flake.url = "github:juspay/services-flake";
   };
 
@@ -37,7 +47,13 @@
       }: let
         lispPackages = pkgs.callPackage ./packages/lisp.nix {lisp = inputs'.clnix.packages.sbcl;};
       in {
-        packages = {inherit (lispPackages) cl-kiln;};
+        packages = {
+          inherit (lispPackages) cl-kiln;
+          era-test-node = pkgs.callPackage ./packages/era-test-node.nix {
+            craneLib = inputs.crane.mkLib pkgs;
+            fenix = inputs'.fenix;
+          };
+        };
 
         devShells.default = pkgs.mkShell {
           packages = [pkgs.niv];
