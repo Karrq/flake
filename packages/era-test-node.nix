@@ -17,8 +17,8 @@
   src = pkgs.fetchFromGitHub {
     owner = "matter-labs";
     repo = "era-test-node";
-    rev = "v0.1.0-alpha.29";
-    sha256 = "sha256-9O71E5P4WL75KiSLZlIv5w52gmQDByUI7LgGwmqDJ18=";
+    rev = "ceee937055a5a373e27b0ff9bf2e42391de78c59";
+    sha256 = "sha256-6hzGdEEHI74gScO6dd4R5qsCGZxPpAuXKK9WVpNQDGM=";
   };
 in
   crane.buildPackage {
