@@ -6,19 +6,14 @@
   fenix,
   ...
 }: let
-  # boojum wants nightly - 2024-07-19 is known working
   rust =
-    (fenix.packages.fromToolchainName {
-      name = "nightly-2024-07-19";
-      sha256 = "sha256-MM2K43Kg+f83XQXT2lI7W/ZdQjLXhMUvA6eGtD+rqDY=";
-    })
-    .minimalToolchain;
+    fenix.packages.stable.minimalToolchain;
   crane = craneLib.overrideToolchain rust;
   src = pkgs.fetchFromGitHub {
     owner = "matter-labs";
-    repo = "era-test-node";
-    rev = "ceee937055a5a373e27b0ff9bf2e42391de78c59";
-    sha256 = "sha256-6hzGdEEHI74gScO6dd4R5qsCGZxPpAuXKK9WVpNQDGM=";
+    repo = "anvil-zksuync";
+    rev = "v0.2.5";
+    sha256 = lib.fakeSha256;
   };
 in
   crane.buildPackage {

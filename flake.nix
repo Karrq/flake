@@ -49,7 +49,7 @@
       in {
         packages = {
           inherit (lispPackages) cl-kiln;
-          era-test-node = pkgs.callPackage ./packages/era-test-node.nix {
+          anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {
             craneLib = inputs.crane.mkLib pkgs;
             fenix = inputs'.fenix;
           };
