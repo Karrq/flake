@@ -49,10 +49,7 @@
       in {
         packages = {
           inherit (lispPackages) cl-kiln;
-          anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {
-            craneLib = inputs.crane.mkLib pkgs;
-            fenix = inputs'.fenix;
-          };
+          anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {};
         };
 
         devShells.default = pkgs.mkShell {
