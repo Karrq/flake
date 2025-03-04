@@ -22,15 +22,14 @@
     services-flake.url = "github:juspay/services-flake";
   };
 
-  outputs = inputs @ {
-    self,
-    flake-parts,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+  outputs = inputs@{ self, flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems =
+        [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
-      flake.processComposeModules.default = import ./services {multiService = inputs.services-flake.lib.multiService;};
+      flake.processComposeModules.default = import ./services {
+        multiService = inputs.services-flake.lib.multiService;
+      };
       flake.templates = {
         nestjs = {
           path = ./templates/nestjs;
@@ -38,23 +37,18 @@
         };
       };
 
-      perSystem = {
-        system,
-        config,
-        inputs',
-        pkgs,
-        ...
-      }: let
-        lispPackages = pkgs.callPackage ./packages/lisp.nix {lisp = inputs'.clnix.packages.sbcl;};
-      in {
-        packages = {
-          inherit (lispPackages) cl-kiln;
-          anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {};
-        };
+      perSystem = { system, config, inputs', pkgs, ... }:
+        let
+          lispPackages = pkgs.callPackage ./packages/lisp.nix {
+            lisp = inputs'.clnix.packages.sbcl;
+          };
+        in {
+          packages = {
+            inherit (lispPackages) cl-kiln;
+            anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix { };
+          };
 
-        devShells.default = pkgs.mkShell {
-          packages = [pkgs.niv];
+          devShells.default = pkgs.mkShell { packages = [ pkgs.niv ]; };
         };
-      };
     };
 }
