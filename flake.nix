@@ -46,6 +46,7 @@
           packages = {
             inherit (lispPackages) cl-kiln;
             anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix { };
+            boot = pkgs.callPackage ./packages/boot.nix { };
           };
 
           devShells.default = pkgs.mkShell { packages = [ pkgs.niv ]; };

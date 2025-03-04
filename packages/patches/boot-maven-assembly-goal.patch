@@ -1,0 +1,27 @@
+diff --git a/Makefile b/Makefile
+index 362935c..9c44a3e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -68,7 +68,7 @@ $(corejar): $(verfile) boot/core/project.clj $(shell find boot/core/src)
+ 	(cd boot/core && lein install)
+ 
+ $(baseuber): boot/base/pom.xml $(shell find boot/base/src/main)
+-	(cd boot/base && mvn -q assembly:assembly -DdescriptorId=jar-with-dependencies)
++	(cd boot/base && mvn -q package assembly:single)
+ 
+ .installed: mkdirs $(basejar) $(alljars)
+ 	cp $(baseuber) $(distjar)
+diff --git a/boot/base/pom.in.xml b/boot/base/pom.in.xml
+index 75bdfd1..a0f7b28 100644
+--- a/boot/base/pom.in.xml
++++ b/boot/base/pom.in.xml
+@@ -53,6 +53,9 @@
+               <mainClass>boot.App</mainClass>
+             </manifest>
+           </archive>
++          <descriptorRefs>
++            <descriptorRef>jar-with-dependencies</descriptorRef>
++          </descriptorRefs>
+         </configuration>
+       </plugin>
+       <plugin>

@@ -1,0 +1,19 @@
+diff --git a/Makefile b/Makefile
+index 362935c..de389e7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,4 +1,4 @@
+-.PHONY: help deps install deploy test clean
++.PHONY: help deps install deploy test clean default
+ 
+ SHELL       := /bin/bash
+ export PATH := bin:$(PATH)
+@@ -18,6 +18,8 @@ baseuber     = boot/base/target/base-$(version)-jar-with-dependencies.jar
+ alljars      = $(podjar) $(aetherjar) $(workerjar) $(corejar) $(baseuber) $(bootjar)
+ java_version = $(shell java -version 2>&1 | awk -F '"' '/version/ {print $$2}' |awk -F. '{print $$1 "." $$2}')
+ 
++default: $(basejar) $(alljars)
++
+ help:
+ 	@echo "version =" $(version)
+ 	@echo "Usage: make {help|deps|install|deploy|test|clean}" 1>&2 && false

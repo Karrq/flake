@@ -1,0 +1,17 @@
+diff --git a/boot/base/pom.in.xml b/boot/base/pom.in.xml
+index 75bdfd1..ed59656 100644
+--- a/boot/base/pom.in.xml
++++ b/boot/base/pom.in.xml
+@@ -59,9 +59,9 @@
+         <artifactId>maven-compiler-plugin</artifactId>
+         <version>3.1</version>
+         <configuration>
+-          <source>1.7</source>
+-          <target>1.7</target>
+-          <compilerArgument></compilerArgument>
++          <source>1.8</source>
++          <target>1.8</target>
++          <compilerArgument/>
+         </configuration>
+       </plugin>
+     </plugins>
