@@ -82,7 +82,7 @@ in rec {
       cl-ppcre
       cl-interpol
       iterate
-      lispPackages."trivia.ppcre"
+      lispPackages."trivia-ppcre"
       trivia
       trivial-types
       cl-with-user-abort
