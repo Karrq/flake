@@ -69,12 +69,12 @@
     # Copy boot uberjar and aether dep
     if  [ -n "$FORCE_BOOT_INSTALL" ] || [ ! -f "$BOOT_HOME/cache/lib/${boot_version}/aether.uber.jar" ]; then
       mkdir -p $BOOT_HOME/cache/lib/${boot_version}
-      ln -s ${boot-jar}/lib/aether.uber.jar $BOOT_HOME/cache/lib/${boot_version}/aether.uber.jar
+      ln -sf ${boot-jar}/lib/aether.uber.jar $BOOT_HOME/cache/lib/${boot_version}/aether.uber.jar
     fi
 
     if  [ -n "$FORCE_BOOT_INSTALL" ] || [ ! -f "$BOOT_HOME/cache/bin/${boot_version}/boot.jar" ]; then
       mkdir -p $BOOT_HOME/cache/bin/${boot_version}
-      ln -s ${boot-jar}/bin/boot.jar $BOOT_HOME/cache/bin/${boot_version}/boot.jar
+      ln -sf ${boot-jar}/bin/boot.jar $BOOT_HOME/cache/bin/${boot_version}/boot.jar
     fi
   '';
 
