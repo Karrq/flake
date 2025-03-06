@@ -42,10 +42,11 @@
 
     # Copy over the boot uberjar and the aether dep
     installPhase = ''
-      mkdir -p $out/{bin,lib}
+      mkdir -p $out/{bin,lib,share}
 
       cp boot/base/src/main/resources/aether.uber.jar $out/lib/aether.uber.jar
       cp boot/base/target/base-${boot_version}-jar-with-dependencies.jar $out/bin/boot.jar
+      echo "BOOT_VERSION=${boot_version}" >> $out/share/boot.properties
     '';
   };
 
@@ -60,18 +61,19 @@
     # Prepare boot.properties file
     if  [ -n "$FORCE_BOOT_INSTALL" ] || [ ! -f "$BOOT_HOME/boot.properties" ]; then
       mkdir -p $BOOT_HOME
-      echo "BOOT_VERSION=${boot_version}" >> $BOOT_HOME/boot.properties
+      cp ${boot-jar}/share/boot.properties $BOOT_HOME/boot.properties
+      chmod +w $BOOT_HOME/boot.properties
     fi
 
     # Copy boot uberjar and aether dep
     if  [ -n "$FORCE_BOOT_INSTALL" ] || [ ! -f "$BOOT_HOME/cache/lib/${boot_version}/aether.uber.jar" ]; then
       mkdir -p $BOOT_HOME/cache/lib/${boot_version}
-      cp ${boot-jar}/lib/aether.uber.jar $BOOT_HOME/cache/lib/${boot_version}/aether.uber.jar
+      ln -s ${boot-jar}/lib/aether.uber.jar $BOOT_HOME/cache/lib/${boot_version}/aether.uber.jar
     fi
 
     if  [ -n "$FORCE_BOOT_INSTALL" ] || [ ! -f "$BOOT_HOME/cache/bin/${boot_version}/boot.jar" ]; then
       mkdir -p $BOOT_HOME/cache/bin/${boot_version}
-      cp ${boot-jar}/bin/boot.jar $BOOT_HOME/cache/bin/${boot_version}/boot.jar
+      ln -s ${boot-jar}/bin/boot.jar $BOOT_HOME/cache/bin/${boot_version}/boot.jar
     fi
   '';
 
