@@ -6,6 +6,7 @@
 }: let
   boot-src = pkgs.fetchgit {
     url = "https://github.com/boot-clj/boot";
+    rev = "74edbeb414886ad61de8bbf6f654da33b114e239";
     sha256 = "sha256-CRLtk3IXxeiWW2b76glh54D15qlPDWraaM6n1lAJTiI=";
   };
 
