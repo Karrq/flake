@@ -97,5 +97,7 @@
         --run '${setup_boot_home}'
     '';
   };
-in
-  boot
+in {
+  inherit boot;
+  boot-unwrapped = boot-jar;
+}
