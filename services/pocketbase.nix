@@ -1,14 +1,8 @@
-{
-  pkgs,
-  lib,
-  config,
-  name,
-  ...
-}: let
-  inherit (lib) types;
+{ pkgs, lib, config, name, ... }:
+let inherit (lib) types;
 in {
   options = {
-    package = lib.mkPackageOption pkgs "pocketbase" {};
+    package = lib.mkPackageOption pkgs "pocketbase" { };
 
     migrationsDir = lib.mkOption {
       type = types.nullOr types.path;
@@ -19,7 +13,8 @@ in {
     encryptionEnv = lib.mkOption {
       type = types.nullOr types.str;
       default = null;
-      description = "ENV variable whose value of 32 chatacters will be used as encryption key for the app settings";
+      description =
+        "ENV variable whose value of 32 chatacters will be used as encryption key for the app settings";
       example = "ENCRYPTION_KEY";
     };
 
@@ -43,10 +38,8 @@ in {
 
     environment = lib.mkOption {
       type = types.attrsOf types.str;
-      default = {};
-      example = {
-        ENCRYPTION_KEY = "<not a valid encryption key>";
-      };
+      default = { };
+      example = { ENCRYPTION_KEY = "<not a valid encryption key>"; };
       description = ''
         Extra environment variables passed to the `pocketbase` process.
       '';
@@ -55,7 +48,7 @@ in {
     _args = lib.mkOption {
       type = types.listOf types.str;
       description = "Extra arguments to pass to the pocketbase serve command";
-      default = [];
+      default = [ ];
     };
   };
 
@@ -63,12 +56,9 @@ in {
     migrationsDir = builtins.toString config.migrationsDir;
     encryptionEnv = builtins.toString config.encryptionEnv;
     host = "${builtins.toString config.host}:${builtins.toString config.port}";
-    scheme =
-      if config.https
-      then "https"
-      else "http";
+    scheme = if config.https then "https" else "http";
     serveScript = pkgs.writeShellApplication {
-      excludeShellChecks = ["SC2090"];
+      excludeShellChecks = [ "SC2090" ];
       name = "pocketbase-server";
       text = ''
         DATA_OPT='--dir ${config.dataDir}/'
@@ -88,7 +78,9 @@ in {
 
         OPTS="$DATA_OPT $MIGRATIONS_OPT $ENCRYPTION_OPT"
 
-        CMD="${lib.getExe config.package} serve $OPTS --${scheme} ${host} ${builtins.concatStringsSep " " config._args}"
+        CMD="${lib.getExe config.package} serve $OPTS --${scheme} ${host} ${
+          builtins.concatStringsSep " " config._args
+        }"
         $CMD
       '';
     };

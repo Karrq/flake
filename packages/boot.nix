@@ -1,9 +1,5 @@
-{
-  lib,
-  pkgs,
-  nix-gitignore,
-  ...
-}: let
+{ lib, pkgs, nix-gitignore, ... }:
+let
   boot-src = pkgs.fetchgit {
     url = "https://github.com/boot-clj/boot";
     rev = "74edbeb414886ad61de8bbf6f654da33b114e239";
@@ -39,7 +35,7 @@
       echo "{:user {:local-repo \"$LOCAL_REPO\"}}" > $LEIN_HOME/profiles.clj
     '';
 
-    nativeBuildInputs = [pkgs.leiningen pkgs.maven];
+    nativeBuildInputs = [ pkgs.leiningen pkgs.maven ];
 
     # Copy over the boot uberjar and the aether dep
     installPhase = ''
@@ -85,8 +81,8 @@
 
     src = boot-jar;
 
-    buildInputs = [boot-jar];
-    nativeBuildInputs = [pkgs.makeWrapper];
+    buildInputs = [ boot-jar ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
 
     installPhase = ''
       mkdir -p $out/bin
