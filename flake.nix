@@ -35,6 +35,11 @@
           path = ./templates/nestjs;
           description = "Nix NestJS template w/ pnpm and docker";
         };
+
+        clojure = {
+          path = ./templates/clojure;
+          description = "Nix Clojure template w/ Clojure CLI & clj-nix";
+        };
       };
 
       perSystem = { system, config, inputs', pkgs, ... }:
