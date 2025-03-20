@@ -14,3 +14,10 @@ This template mimics the `nest init` command, using `pnpm` and adding the follow
 2. A derivation to containerize the application
 3. A devShell with all required dependencies
 
+### Clojure
+
+This template allows quick scaffolding of a clojure application, including:
+
+1. A derivation to build the clojure project
+2. A derivation to containerize the application
+3. A devShell with all required dependencies
