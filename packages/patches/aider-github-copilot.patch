@@ -1,12 +1,11 @@
 diff --git a/aider/resources/model-settings.yml b/aider/resources/model-settings.yml
-index d26bf522..297b5d4f 100644
+index 42a38cbd..835a18ed 100644
 --- a/aider/resources/model-settings.yml
 +++ b/aider/resources/model-settings.yml
-@@ -962,4 +962,132 @@
- - name: vertex_ai/gemini-2.5-pro-exp-03-25
-   edit_format: diff-fenced
-   use_repo_map: true
-+
+@@ -1040,3 +1040,123 @@
+   edit_format: diff
+   examples_as_sys_msg: true
+   
 +- name: github_copilot/gpt-3.5-turbo
 +  weak_model_name: gpt-4o-mini
 +  reminder: sys
