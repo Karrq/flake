@@ -22,11 +22,14 @@
     services-flake.url = "github:juspay/services-flake";
   };
 
-  outputs = inputs@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems =
-        [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      imports = [ inputs.flake-parts.flakeModules.easyOverlay ];
+  outputs = inputs @ {
+    self,
+    flake-parts,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+      imports = [inputs.flake-parts.flakeModules.easyOverlay];
 
       flake.processComposeModules.default = import ./services {
         multiService = inputs.services-flake.lib.multiService;
@@ -43,25 +46,34 @@
         };
       };
 
-      perSystem = { system, config, inputs', pkgs, ... }:
-        let
-          lispPackages = pkgs.callPackage ./packages/lisp.nix {
-            lisp = inputs'.clnix.packages.sbcl;
-          };
-        in {
-          packages = {
-            inherit (lispPackages) cl-kiln;
-            inherit (pkgs.callPackage ./packages/boot.nix { })
-              boot boot-unwrapped;
-
-            anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix { };
-          };
-
-          devShells.default = pkgs.mkShell { packages = [ pkgs.niv ]; };
-
-          overlayAttrs = {
-            inherit (config.packages) anvil-zksync boot cl-kiln;
-          };
+      perSystem = {
+        system,
+        config,
+        inputs',
+        pkgs,
+        ...
+      }: let
+        lispPackages = pkgs.callPackage ./packages/lisp.nix {
+          lisp = inputs'.clnix.packages.sbcl;
         };
+      in {
+        packages = {
+          inherit (lispPackages) cl-kiln;
+          inherit
+            (pkgs.callPackage ./packages/boot.nix {})
+            boot
+            boot-unwrapped
+            ;
+
+          anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {};
+          aider-chat = pkgs.callPackage ./packages/aider-chat.nix {};
+        };
+
+        devShells.default = pkgs.mkShell {packages = [pkgs.niv];};
+
+        overlayAttrs = {
+          inherit (config.packages) anvil-zksync boot cl-kiln aider-chat;
+        };
+      };
     };
 }
