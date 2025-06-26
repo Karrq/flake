@@ -129,7 +129,37 @@
         "fenix": "fenix",
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
+        "rust-docs-mcp": "rust-docs-mcp",
         "services-flake": "services-flake"
+      }
+    },
+    "rust-docs-mcp": {
+      "inputs": {
+        "crane": [
+          "crane"
+        ],
+        "fenix": [
+          "fenix"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1750945852,
+        "narHash": "sha256-GvHxilW7JnA6cSICH/TdKYz3ikPr9lBkKQDTulHAjf4=",
+        "owner": "snowmead",
+        "repo": "rust-docs-mcp",
+        "rev": "a41f88ac673f805784de3e5fcb4b8ba12ba4395c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "snowmead",
+        "repo": "rust-docs-mcp",
+        "type": "github"
       }
     },
     "services-flake": {

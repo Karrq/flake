@@ -70,6 +70,8 @@
             fenix = inputs'.fenix.packages;
             rust-docs-mcp = inputs'.rust-docs-mcp;
           };
+
+          zen-mcp = pkgs.callPackage ./packages/mcp/zen-mcp.nix {};
         };
       in {
         packages = {
@@ -80,7 +82,7 @@
             boot-unwrapped
             ;
 
-          inherit (mcpPackages) rust-docs-mcp;
+          inherit (mcpPackages) rust-docs-mcp zen-mcp;
 
           anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {};
           aider-chat = pkgs.callPackage ./packages/aider-chat.nix {};
