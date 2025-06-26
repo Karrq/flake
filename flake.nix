@@ -20,6 +20,15 @@
     };
 
     services-flake.url = "github:juspay/services-flake";
+
+    # Packages
+    rust-docs-mcp = {
+      url = "github:snowmead/rust-docs-mcp";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.crane.follows = "crane";
+      inputs.fenix.follows = "fenix";
+    };
   };
 
   outputs = inputs @ {
@@ -56,6 +65,12 @@
         lispPackages = pkgs.callPackage ./packages/lisp.nix {
           lisp = inputs'.clnix.packages.sbcl;
         };
+        mcpPackages = {
+          rust-docs-mcp = pkgs.callPackage ./packages/mcp/rust-docs.nix {
+            fenix = inputs'.fenix.packages;
+            rust-docs-mcp = inputs'.rust-docs-mcp;
+          };
+        };
       in {
         packages = {
           inherit (lispPackages) cl-kiln;
@@ -65,6 +80,8 @@
             boot-unwrapped
             ;
 
+          inherit (mcpPackages) rust-docs-mcp;
+
           anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {};
           aider-chat = pkgs.callPackage ./packages/aider-chat.nix {};
         };
@@ -72,7 +89,7 @@
         devShells.default = pkgs.mkShell {packages = [pkgs.niv];};
 
         overlayAttrs = {
-          inherit (config.packages) anvil-zksync boot cl-kiln aider-chat;
+          inherit (config.packages) anvil-zksync boot cl-kiln aider-chat rust-docs-mcp;
         };
       };
     };
