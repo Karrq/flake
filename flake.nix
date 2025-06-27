@@ -91,7 +91,7 @@
         devShells.default = pkgs.mkShell {packages = [pkgs.niv];};
 
         overlayAttrs = {
-          inherit (config.packages) anvil-zksync boot cl-kiln aider-chat rust-docs-mcp;
+          inherit (config.packages) anvil-zksync boot cl-kiln aider-chat rust-docs-mcp zen-mcp;
         };
       };
     };
