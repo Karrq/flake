@@ -73,6 +73,7 @@
 
           zen-mcp = pkgs.callPackage ./packages/mcp/zen-mcp.nix {};
         };
+        scripts = pkgs.callPackage ./packages/scripts/default.nix {};
       in {
         packages = {
           inherit (lispPackages) cl-kiln;
@@ -83,6 +84,8 @@
             ;
 
           inherit (mcpPackages) rust-docs-mcp zen-mcp;
+
+          inherit (scripts) gh-thread-pr-comments;
 
           anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {};
           aider-chat = pkgs.callPackage ./packages/aider-chat.nix {};
