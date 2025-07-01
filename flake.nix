@@ -72,18 +72,20 @@
           };
 
           zen-mcp = pkgs.callPackage ./packages/mcp/zen-mcp.nix {};
+          bigparse-mcp = pkgs.callPackage ./packages/mcp/bigparse-mcp.nix {};
         };
         scripts = pkgs.callPackage ./packages/scripts/default.nix {};
       in {
         packages = {
           inherit (lispPackages) cl-kiln;
+
           inherit
             (pkgs.callPackage ./packages/boot.nix {})
             boot
             boot-unwrapped
             ;
 
-          inherit (mcpPackages) rust-docs-mcp zen-mcp;
+          inherit (mcpPackages) rust-docs-mcp zen-mcp bigparse-mcp;
 
           inherit (scripts) gh-thread-pr-comments;
 
