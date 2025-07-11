@@ -91,12 +91,13 @@
 
           anvil-zksync = pkgs.callPackage ./packages/anvil-zksync.nix {};
           aider-chat = pkgs.callPackage ./packages/aider-chat.nix {};
+          opencode = pkgs.callPackage ./packages/opencode.nix {};
         };
 
         devShells.default = pkgs.mkShell {packages = [pkgs.niv];};
 
         overlayAttrs = {
-          inherit (config.packages) anvil-zksync boot cl-kiln aider-chat rust-docs-mcp zen-mcp;
+          inherit (config.packages) anvil-zksync boot cl-kiln aider-chat opencode rust-docs-mcp zen-mcp;
         };
       };
     };
